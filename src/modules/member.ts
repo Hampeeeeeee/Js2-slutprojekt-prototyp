@@ -1,3 +1,5 @@
+import { renderAllTasks } from "./render";
+
 const base_url: string = "https://fe24-js2-slutprojekt-hampus-default-rtdb.europe-west1.firebasedatabase.app/";
 
 interface Member {
@@ -110,7 +112,6 @@ export function showMemberSelectionModal(matchingMembers: Member[], taskCategory
     assignButtons.forEach((assignButton, index) => {
         assignButton.addEventListener('click', async() => {
             const selectedMember = matchingMembers[index];
-            // alert(`Task assigned to ${selectedMember.name} (${selectedMember.role})`);
 
             const url = `https://fe24-js2-slutprojekt-hampus-default-rtdb.europe-west1.firebasedatabase.app/assignments/${taskId}.json`;
 
@@ -128,7 +129,8 @@ export function showMemberSelectionModal(matchingMembers: Member[], taskCategory
             try {
                 const response = await fetch(url, options);
                 if (response.ok) {
-                    console.log("Task status updated to done");
+                    console.log("Task status updated to in progress");
+                    renderAllTasks();
                 } else {
                     console.error('Failed to update task status');
                 }
@@ -143,8 +145,8 @@ export function showMemberSelectionModal(matchingMembers: Member[], taskCategory
                     inProgressContainer.appendChild(taskElement);
 
                     // Lägg till text som visar vem uppgiften är tilldelad till
-                    const assignedToElement = document.createElement('p');
-                    assignedToElement.textContent = `Assigned to: ${selectedMember.name}`;
+                    // const assignedToElement = document.createElement('p');
+                    // assignedToElement.textContent = `Assigned to: ${selectedMember.name}`;
 
                     // const date = new Date();
                     // const formattedDate = date.toLocaleString('sv-SE');
@@ -165,7 +167,7 @@ export function showMemberSelectionModal(matchingMembers: Member[], taskCategory
 
                     const assignButton = taskElement.querySelector('#assignToBtn') as HTMLButtonElement;
                     if (assignButton) {
-                        assignButton.textContent = 'Done';
+                        // assignButton.textContent = 'Done';
 
                         assignButton.addEventListener('click', () => {
                             // Hantera när uppgiften markeras som klar
@@ -177,7 +179,7 @@ export function showMemberSelectionModal(matchingMembers: Member[], taskCategory
                                 doneContainer.appendChild(taskElement); // Flytta uppgiften till "Done"-sektionen
                             }
 
-                            assignButton.textContent = 'Delete';
+                            // assignButton.textContent = 'Delete';
 
                             assignButton.addEventListener('click', () => {
                                 // Ta bort uppgiften från doneContainer
@@ -213,35 +215,35 @@ export async function assignTaskToMember(role: string, taskCategory: string, but
 
     // Hitta alla medlemmar som har samma roll
     const matchingMembers = members.filter(m => m.role === role);
+    showMemberSelectionModal(matchingMembers, taskCategory, button, taskId); // Visa en modal med medlemmarna
 
-    if (matchingMembers.length > 0) {
-        if (button.textContent === 'Assign to') {
-            showMemberSelectionModal(matchingMembers, taskCategory, button, taskId); // Visa en modal med medlemmarna
-            // const url = `https://fe24-js2-slutprojekt-hampus-default-rtdb.europe-west1.firebasedatabase.app/assignments/${taskId}.json`;
+    // if (matchingMembers.length > 0) {
+    //     if (button.textContent === 'Assign to') {
+    //         // const url = `https://fe24-js2-slutprojekt-hampus-default-rtdb.europe-west1.firebasedatabase.app/assignments/${taskId}.json`;
 
-            // const inProgressTask = {
-            //     status: 'in progress',
-            //     // assigned: selectedMember,
-            // }
-            // const options = {
-            //     method: "PATCH",
-            //     body: JSON.stringify(inProgressTask),
-            //     headers: {
-            //         "Content-Type": "application/json; charset=UTF-8"
-            //     }
-            // };
-            // try {
-            //     const response = await fetch(url, options);
-            //     if (response.ok) {
-            //         console.log("Task status updated to done");
-            //     } else {
-            //         console.error('Failed to update task status');
-            //     }
-            // } catch (error) {
-            //     console.error('Error while updating task status:', error);
-            // }
-        }
-    } else {
-        alert('No member found for this role.');
-    }
+    //         // const inProgressTask = {
+    //         //     status: 'in progress',
+    //         //     // assigned: selectedMember,
+    //         // }
+    //         // const options = {
+    //         //     method: "PATCH",
+    //         //     body: JSON.stringify(inProgressTask),
+    //         //     headers: {
+    //         //         "Content-Type": "application/json; charset=UTF-8"
+    //         //     }
+    //         // };
+    //         // try {
+    //         //     const response = await fetch(url, options);
+    //         //     if (response.ok) {
+    //         //         console.log("Task status updated to done");
+    //         //     } else {
+    //         //         console.error('Failed to update task status');
+    //         //     }
+    //         // } catch (error) {
+    //         //     console.error('Error while updating task status:', error);
+    //         // }
+    //     }
+    // } else {
+    //     alert('No member found for this role.');
+    // }
 }

@@ -1,7 +1,7 @@
 import { addMember } from "./modules/member.ts";
 import { addAssignment, Assignment } from "./modules/assignment.ts";
 import { getAllTasks } from "./modules/URL.ts";
-import { assignTaskToMember, getMembers } from "./modules/member.ts";
+import { getMembers } from "./modules/member.ts";
 import { sortByTimestamp, sortByTitle } from "./modules/sorting.ts";
 import { filterByMember, filterByCategory } from "./modules/filter.ts";
 import { renderAllTasks } from "./modules/render.ts";
@@ -107,6 +107,8 @@ async function populateMemberFilter() {
 document.addEventListener('DOMContentLoaded', populateMemberFilter);
 
 renderAllTasks();
+
+
 
 
 

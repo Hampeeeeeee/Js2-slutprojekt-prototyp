@@ -36,6 +36,7 @@ export async function renderAllTasks(): Promise<void> {
                     const formattedDate = date.toLocaleString('sv-SE');
 
                     taskElement.innerHTML = `
+                        <h2>To do</h2>
                         <h3>${task.title}</h3>
                         <p><i>${task.description}</i></p>
                         <h4><b>Qualification: ${task.category}</b></h4>
@@ -88,6 +89,7 @@ export async function renderAllTasks(): Promise<void> {
                     const formattedDate = date.toLocaleString('sv-SE');
 
                     taskElement.innerHTML = `
+                        <h2>In progress</h2>
                         <h3>${task.title}</h3>
                         <p><i>${task.description}</i></p>
                         <h4><b>Qualification: ${task.category}</b></h4>
@@ -140,11 +142,12 @@ export async function renderAllTasks(): Promise<void> {
                     const formattedDate = date.toLocaleString('sv-SE');
 
                     taskElement.innerHTML = `
+                        <h2>Done</h2>
                         <h3>${task.title}</h3>
                         <p><i>${task.description}</i></p>
                         <h4><b>Qualification: ${task.category}</b></h4>
                         <h5>${formattedDate}</h5>
-                        <p>Assigned to:</p>
+                        <p>Assigned to: ${task.assigned}</p>
                         <button id="deleteBtn">Delete</button>
                     `;
 
