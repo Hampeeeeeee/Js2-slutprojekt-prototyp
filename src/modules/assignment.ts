@@ -1,6 +1,5 @@
 // Allt som har med assignment och göra. Hämta assignments, läggs till assignments, och render assignments.
 
-// import { filterByMember, filterByCategory } from './filter';
 const base_url: string = "https://fe24-js2-slutprojekt-hampus-default-rtdb.europe-west1.firebasedatabase.app/";
 
 export interface Assignment {

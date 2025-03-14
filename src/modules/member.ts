@@ -1,7 +1,7 @@
 // Funktioner som hanterar allt som har med members att göra. Lägga till member, hämta members, visa modal med
 // members som kan bli tilldelade uppgifter, och slutligen lägga till member till en uppgift.
 
-import { renderAllTasks } from "./render";
+import { renderAllTasks } from "./render.ts";
 
 const base_url: string = "https://fe24-js2-slutprojekt-hampus-default-rtdb.europe-west1.firebasedatabase.app/";
 

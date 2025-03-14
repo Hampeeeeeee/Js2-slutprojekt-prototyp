@@ -68,12 +68,6 @@ document.addEventListener('DOMContentLoaded', populateMemberFilter);
 
 renderAllTasks();
 
-
-
-
-
-
-
 const memberFilter = document.querySelector('#memberFilter')  as HTMLSelectElement;
 console.log(memberFilter);
 memberFilter?.addEventListener('change', () =>{
